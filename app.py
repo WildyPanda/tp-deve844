@@ -1,4 +1,3 @@
-%%writefile flask_render_demo/app.py
 from flask import Flask, request
 import requests
 
@@ -28,11 +27,7 @@ def form(data):
 def all():
     response = requests.get(FIREBASE_DB_URL)
     if response.ok:
-        messages = response.json()
-        res = ""
-        for k, msg in messages.items():
-            res += f"- {msg['nom']}: {msg['message']}"
-        return res
+        return response.json()
     else:
         return "Erreur lors de la lecture :" + response.text
 
