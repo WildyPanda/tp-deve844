@@ -19,7 +19,13 @@ def index():
     return res
 
 @app.route('/form', methods=['POST'])
-def form(data):
+def form():
+    nom = request.form.get("nom")
+    message = request.form.get("message")
+    data = {
+        "nom": nom,
+        "message": message
+    }
     requests.post(FIREBASE_DB_URL, json=data)
     return "ok"
 
