@@ -1,3 +1,4 @@
+%%writefile flask_render_demo/app.py
 from flask import Flask, request
 import requests
 
@@ -19,12 +20,12 @@ def index():
     return res
 
 @app.route('/form', methods=['POST'])
-def index(data):
+def form(data):
     requests.post(FIREBASE_DB_URL, json=data)
     return "ok"
 
 @app.route('/all', methods=['GET'])
-def index():
+def all():
     response = requests.get(FIREBASE_DB_URL)
     if response.ok:
         messages = response.json()
